@@ -33,7 +33,7 @@ public class InventoryUI : MonoBehaviour
         // 스크립트 순서 지정해서 해결
 
 
-        //
+        //onChangeItem이 참조할 메서드 정의
         inven.onChangeItem += RedrawSlotUI;
 
         // 초기에 인벤토리 안켜진 상태로 시작
@@ -46,6 +46,9 @@ public class InventoryUI : MonoBehaviour
         // slots의 갯수만큼만 활성화 하고 나머지는 비활성화
         for (int i = 0; i < slots.Length; i++)
         {
+            // Slot의 slotnum을 차례로 번호를 부여 
+            slots[i].slotnum = i;
+
             // SlotCnt 만큼만 interactable 를 true 줘서 활성화
             // Button 의 interactable이 false면 비활성화된다.
             if (i < inven.SlotCnt)
@@ -77,6 +80,17 @@ public class InventoryUI : MonoBehaviour
     //
     private void RedrawSlotUI()
     {
+        // 반복문을 통해 슬롯들을 초기화
+        // items의 갯수만큼 slot을 채워넣습니다.
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].RemoveSlot();
+        }
 
+        for (int i = 0; i < inven.items.Count; i++)
+        {
+            slots[i].item = inven.items[i];
+            slots[i].UppdateSlotUI();
+        }
     }
 }

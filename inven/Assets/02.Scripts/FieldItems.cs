@@ -12,10 +12,14 @@ public class FieldItems : MonoBehaviour
     // 필드에 아이템을 생성할 때 SetItem 통해 전달받은 item으로 현재 클래스의 item을 초기화
     public void SetItem(Item _item)
     {
+        // 아이템 이름, 이미지, 종류 
         item.itemName = _item.itemName;
         item.itemImage = _item.itemImage;
         item.itemType = _item.itemType;
 
+        // 아이템 이펙트 변수 추가
+        item.efts = _item.efts;
+        
         // 아이템에 맞게 이미지 변화
         image.sprite = item.itemImage;
     }
