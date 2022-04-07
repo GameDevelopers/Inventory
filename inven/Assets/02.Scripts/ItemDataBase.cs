@@ -6,6 +6,9 @@ public class ItemDataBase : MonoBehaviour
 {
     public static ItemDataBase instance;
 
+    //
+    public int money = 0;
+
     private void Awake()
     {
         instance = this;
@@ -20,6 +23,8 @@ public class ItemDataBase : MonoBehaviour
     // 아이템 습득 확인을 위한 스타트 메서드
     private void Start()
     {
+        // 
+        money = 10000;
         for (int i = 0; i < 4; i++)
         {
             GameObject go = Instantiate(fielditemPrefab, pos[i], Quaternion.identity);

@@ -21,6 +21,9 @@ public class Item
     // ItemEffect List »ý¼º
     public List<ItemEffect> efts;
 
+    //
+    public int itemCost;
+
     public bool Use()
     {
         bool isuUsed = false;

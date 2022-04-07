@@ -15,8 +15,13 @@ public class InventoryUI : MonoBehaviour
     // 활성화 여부 판단
     bool activeInventory = false;
 
+    //
     public Slot[] slots;
     public Transform slotHolder;
+
+    //
+    public ShopSlot[] shopSlots;
+    public Transform shopHolder;
 
     private void Start()
     {
@@ -25,6 +30,15 @@ public class InventoryUI : MonoBehaviour
 
         // GetComponentsInChildren이용해서 content안의 Slot 생성되는거 전부 선택
         slots = slotHolder.GetComponentsInChildren<Slot>();
+        // 
+        shopSlots = slotHolder.GetComponentsInChildren<ShopSlot>();
+
+        //
+        for (int i = 0; i < shopSlots.Length; i++)
+        {
+            shopSlots[i].Init(this);
+            shopSlots[i].slotnum = i;
+        }
 
         // onSlotCountChange가 참조할 메서드 정의
         inven.onSlotCountChange += SlotChange;
@@ -36,8 +50,14 @@ public class InventoryUI : MonoBehaviour
         //onChangeItem이 참조할 메서드 정의
         inven.onChangeItem += RedrawSlotUI;
 
+        //
+        RedrawSlotUI();
+
         // 초기에 인벤토리 안켜진 상태로 시작
         inventoryPanel.SetActive(activeInventory);
+
+        // 상점 비활성화
+        closeShop.onClick.AddListener(DeActiveShop);
     }
 
 
@@ -70,10 +90,15 @@ public class InventoryUI : MonoBehaviour
     private void Update()
     {
         // I 키로 인벤토리 창 활성화
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !isStoreActive)
         {
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
+        }
+        // 마우스 버튼이 클릭 되면 rayshop에서 메소드 호출
+        if (Input.GetMouseButtonUp(0))
+        {
+            RayShop();
         }
     }
 
@@ -91,6 +116,99 @@ public class InventoryUI : MonoBehaviour
         {
             slots[i].item = inven.items[i];
             slots[i].UppdateSlotUI();
+        }
+    }
+
+
+
+    // 상점 클릭 시 거래창 활성화 되게하는 코드 작성
+    public GameObject shop;
+    // 상점을 비활성화 시키는 코드 작성을 위한 버튼변수
+    public Button closeShop;
+    //
+    public bool isStoreActive;
+    //
+    public ShopData shopData;
+
+    //  클릭한 위치에 레이를 쏴 상점 위치를 체크
+    public void RayShop()
+    {
+        // 마우스의 위치를 가져와서 화면 좌표를 월드좌표로 반환 받아 사용
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = -10;
+        // 확인 DrawRay 씬 창에 레이를 그려줌
+        // Debug.DrawRay(mousePos, transform.forward, Color.red, 0.5f);
+
+        //
+        // 모바일은 -1 대신 0
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1))
+        {
+            // 레이캐스트를 이용해서 히트값을 가져온다.
+            RaycastHit2D hit2D = Physics2D.Raycast(mousePos, transform.forward, 30);
+            if (hit2D.collider != null)
+            { // hit값이 비어있지 않고
+                // 충돌체의 태그가 스토어라면
+                if (hit2D.collider.tag == "Store")
+                {
+                    if (!isStoreActive)
+                    {
+                        ActiveShop(true);
+                        //
+                        shopData = hit2D.collider.GetComponent<ShopData>();
+                        //
+                        for (int i = 0; i < shopData.stocks.Count; i++)
+                        {
+                            // 상점의 아이템 데이터를 받아서 상점 슬롯에 채워준다.
+                            shopSlots[i].item = shopData.stocks[i];
+                            shopSlots[i].UppdateSlotUI();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //
+    public void Buy(int num)
+    {
+        shopData.soldOuts[num] = true;
+    }
+
+    // 비/활성화 코드는 따로 작성
+    public void ActiveShop(bool isOpen)
+    {
+        if (activeInventory)
+        {
+            // 
+            isStoreActive = isOpen;
+            shop.SetActive(isOpen);
+            inventoryPanel.SetActive(isOpen);
+            //
+            for (int i = 0; i < slots.Length; i++)
+            {   //
+                slots[i].isShopMode = isOpen;
+            }
+        }
+        
+    }
+    //
+    public void DeActiveShop()
+    {
+        ActiveShop(false);
+        //
+        shopData = null;
+        for (int i = 0; i < shopSlots.Length; i++)
+        {
+            shopSlots[i].RemoveSlot();
+        }
+    }
+    //
+    public void SellBtn()
+    {
+        //
+        for (int i = slots.Length; i > 0; i--)
+        {
+            slots[i - 1].SellItem();
         }
     }
 }
