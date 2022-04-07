@@ -17,14 +17,15 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     {
         // itemIcon sprite를 아이템 이미지로 초기화하고 활성화 시켜준다.
         itemIcon.sprite = item.itemImage;
-        itemIcon.gameObject.SetActive(true);
+        //itemIcon.gameObject.SetActive(true);
+
     }
 
     // item은 null로 SetActive는 false를 시켜준다
     public void RemoveSlot()
     {
         item = null;
-        itemIcon.gameObject.SetActive(false);
+        //itemIcon.gameObject.SetActive(false);
     }
 
     public void OnPointerUp(PointerEventData eventData)

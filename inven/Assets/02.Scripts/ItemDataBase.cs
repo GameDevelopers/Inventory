@@ -20,7 +20,7 @@ public class ItemDataBase : MonoBehaviour
     // 아이템 습득 확인을 위한 스타트 메서드
     private void Start()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 4; i++)
         {
             GameObject go = Instantiate(fielditemPrefab, pos[i], Quaternion.identity);
             go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, 3)]);

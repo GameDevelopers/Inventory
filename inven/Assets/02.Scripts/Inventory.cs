@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     {
         if(instance != null)
         {
-            Destroy(instance);
+            Destroy(gameObject);
             return;
         }
         instance = this;
@@ -57,8 +57,8 @@ public class Inventory : MonoBehaviour
             items.Add(_item);
             if(onChangeItem != null)
             // 아이템 추가에 성공하면 onChangeItem를 호출
-                onChangeItem.Invoke();
-                return true;
+            onChangeItem.Invoke();
+            return true;
         }
         // 아이템 추가에 성공하면 true 아니면 false 반환
         return false;
@@ -75,15 +75,14 @@ public class Inventory : MonoBehaviour
     // 플레이어와 필드아이템이 충돌하면 AddItem 호출
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("FieldItem"))
+        if (collision.tag=="FieldItem")
         {
             FieldItems fieldItems = collision.GetComponent<FieldItems>();
             // AddItem이 아이템을 추가되면 true 반환
             // 아이템 추가에 성공하면 필드아이템은 파괴
             if (AddItem(fieldItems.GetItem()))
-            {
                 fieldItems.DestroyItem();
-            }
+            
         }
     }
 }
