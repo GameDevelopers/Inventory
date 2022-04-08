@@ -21,7 +21,7 @@ public class Item
     // ItemEffect List 생성
     public List<ItemEffect> efts;
 
-    //
+    // 아이템 비용 항목 추가
     public int itemCost;
 
     public bool Use()

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 //
-//  Slot.cs에서 UppdateSlotUI,RemoveSlot,OnPointerUp 메서드 3개 복사가져오기
+//  Slot.cs에서 UppdateSlotUI,RemoveSlot,OnPointerUp(얘만 내용삭제) 메서드 3개 복사가져오기
 public class ShopSlot : MonoBehaviour, IPointerUpHandler
 {
     public int slotnum;
     public Item item;
     public Image itemIcon;
-    //
+    // 아이템이 팔렸음을 표시
     public bool soldOut = false;
     //
     InventoryUI inventoryUI;
@@ -44,6 +44,8 @@ public class ShopSlot : MonoBehaviour, IPointerUpHandler
         itemIcon.gameObject.SetActive(false);
     }
 
+    // 상점 슬롯이 눌리면 소지한 돈과 아이템의 가격을 비교해서 돈이 부족하지 않다면
+    // 아이템을 구매시 가격만큼 돈에서 차감하고 해당아이템을 인벤토리에 표시
     public void OnPointerUp(PointerEventData eventData)
     {
         if (item != null)
@@ -53,7 +55,7 @@ public class ShopSlot : MonoBehaviour, IPointerUpHandler
             {
                 ItemDataBase.instance.money -= item.itemCost;
                 Inventory.instance.AddItem(item);
-                //
+                // 팔린 아이템을 
                 soldOut = true;
                 inventoryUI.Buy(slotnum);
                 UppdateSlotUI();

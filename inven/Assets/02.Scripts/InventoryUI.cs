@@ -50,7 +50,7 @@ public class InventoryUI : MonoBehaviour
         //onChangeItem이 참조할 메서드 정의
         inven.onChangeItem += RedrawSlotUI;
 
-        //
+        // 한번 호출해서 모든 슬롯을 초기화
         RedrawSlotUI();
 
         // 초기에 인벤토리 안켜진 상태로 시작
@@ -89,7 +89,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
-        // I 키로 인벤토리 창 활성화
+        // I 키로 인벤토리 창 활성화 + 상점이 열려있지 않다면
         if (Input.GetKeyDown(KeyCode.I) && !isStoreActive)
         {
             activeInventory = !activeInventory;
@@ -125,7 +125,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject shop;
     // 상점을 비활성화 시키는 코드 작성을 위한 버튼변수
     public Button closeShop;
-    //
+    // 이 변수가 참이면 i키를 눌러도 인벤이 비활성화 되지 않게 막아준다.
     public bool isStoreActive;
     //
     public ShopData shopData;
@@ -179,13 +179,15 @@ public class InventoryUI : MonoBehaviour
     {
         if (activeInventory)
         {
-            // 
+            // 인벤토리 활성여부 : 상점이 켜지면 i키를 눌러도 인벤토리 창이 사라지지않고,
+            // 인벤토리 창이 켜지면 상점이 안켜지개 설정
             isStoreActive = isOpen;
             shop.SetActive(isOpen);
             inventoryPanel.SetActive(isOpen);
-            //
+            // 모든 슬롯의 샵모드를 매개변수에다가 초기화되게 만들어준다
             for (int i = 0; i < slots.Length; i++)
-            {   //
+            {   // 전달인자를 참으로 전달하게 되면 모든 슬롯에 샵모드가 참이된다
+                // 반대로 close 버튼을 누르면 샵모드가 거짓이 된다.
                 slots[i].isShopMode = isOpen;
             }
         }
@@ -195,17 +197,19 @@ public class InventoryUI : MonoBehaviour
     public void DeActiveShop()
     {
         ActiveShop(false);
-        //
+        // 
         shopData = null;
         for (int i = 0; i < shopSlots.Length; i++)
         {
             shopSlots[i].RemoveSlot();
         }
     }
+
     //
     public void SellBtn()
     {
-        //
+        // 슬롯의 크기에서 하나씩 빼면서 진행
+        // 0부터 시작하면 뒷부분의 슬롯이 앞으로 밀려나면서 데이터가 꼬이기 떄문이다
         for (int i = slots.Length; i > 0; i--)
         {
             slots[i - 1].SellItem();

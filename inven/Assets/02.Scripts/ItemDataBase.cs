@@ -6,7 +6,7 @@ public class ItemDataBase : MonoBehaviour
 {
     public static ItemDataBase instance;
 
-    //
+    //지불수단 변수
     public int money = 0;
 
     private void Awake()
