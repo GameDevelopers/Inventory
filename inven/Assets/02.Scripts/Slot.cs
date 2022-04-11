@@ -15,7 +15,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     // 참이면 판매모드, 거짓이면 아이템 사용모드
     public bool isShopMode;
-    // 아이템이 선택되면 참으로 바뀌어서 참인 아이템만 판매되도록 설정
+    // 아이템이 선택되면 참으로 바뀌어서 ok눌렀을 때 참인 아이템만 판매되도록 설정
     public bool isSell = false;
     // isSell이 참이면 체크표시 아이콘을 만들어준다.
     public GameObject chkSell;

@@ -15,11 +15,11 @@ public class InventoryUI : MonoBehaviour
     // 활성화 여부 판단
     bool activeInventory = false;
 
-    //
+    // 프리팹안의 슬롯들을 가져옴
     public Slot[] slots;
     public Transform slotHolder;
 
-    //
+    // 인벤토리 슬롯 가져온 방식과동일
     public ShopSlot[] shopSlots;
     public Transform shopHolder;
 
@@ -30,13 +30,14 @@ public class InventoryUI : MonoBehaviour
 
         // GetComponentsInChildren이용해서 content안의 Slot 생성되는거 전부 선택
         slots = slotHolder.GetComponentsInChildren<Slot>();
-        // 
-        shopSlots = slotHolder.GetComponentsInChildren<ShopSlot>();
+        // 위와 동일한 방식
+        shopSlots = shopHolder.GetComponentsInChildren<ShopSlot>();
 
-        //
+        // 자기자신을 인자로 넘겨준다
         for (int i = 0; i < shopSlots.Length; i++)
         {
             shopSlots[i].Init(this);
+            // 상점 슬롯의 몇번째 슬롯인지 지정해준다.
             shopSlots[i].slotnum = i;
         }
 
@@ -56,7 +57,7 @@ public class InventoryUI : MonoBehaviour
         // 초기에 인벤토리 안켜진 상태로 시작
         inventoryPanel.SetActive(activeInventory);
 
-        // 상점 비활성화
+        // 상점 비활성화 닫기 버튼 
         closeShop.onClick.AddListener(DeActiveShop);
     }
 
@@ -127,7 +128,7 @@ public class InventoryUI : MonoBehaviour
     public Button closeShop;
     // 이 변수가 참이면 i키를 눌러도 인벤이 비활성화 되지 않게 막아준다.
     public bool isStoreActive;
-    //
+    // 상점정보를 넣어두는 변수
     public ShopData shopData;
 
     //  클릭한 위치에 레이를 쏴 상점 위치를 체크
@@ -139,7 +140,7 @@ public class InventoryUI : MonoBehaviour
         // 확인 DrawRay 씬 창에 레이를 그려줌
         // Debug.DrawRay(mousePos, transform.forward, Color.red, 0.5f);
 
-        //
+        // 레이가 ui를 뚫고 가지 못하도록 만들어준다.
         // 모바일은 -1 대신 0
         if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1))
         {
@@ -148,19 +149,23 @@ public class InventoryUI : MonoBehaviour
             if (hit2D.collider != null)
             { // hit값이 비어있지 않고
                 // 충돌체의 태그가 스토어라면
-                if (hit2D.collider.tag == "Store")
+                if (hit2D.collider.CompareTag( "Store"))
                 {
                     if (!isStoreActive)
                     {
                         ActiveShop(true);
-                        //
+
+                        //상점을 클릭시 샵데이터를 가져오고
                         shopData = hit2D.collider.GetComponent<ShopData>();
-                        //
+                        // 상점슬롯에 아이템을 넣어주고 UI를 보여준다.
                         for (int i = 0; i < shopData.stocks.Count; i++)
                         {
+                            //Debug.Log(shopData.stocks.Count);
                             // 상점의 아이템 데이터를 받아서 상점 슬롯에 채워준다.
                             shopSlots[i].item = shopData.stocks[i];
                             shopSlots[i].UppdateSlotUI();
+
+                            //Debug.Log(shopData.stocks[i]);
                         }
                     }
                 }
@@ -168,36 +173,38 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    //
+    // 슬롯에 번호를 넘겨받을 수 있게 해주는 정수형 변수 받기
     public void Buy(int num)
     {
+        // 상점에 몇번째 아이템이 팔렸는지 정보를 알려준다.
         shopData.soldOuts[num] = true;
     }
 
     // 비/활성화 코드는 따로 작성
     public void ActiveShop(bool isOpen)
     {
-        if (activeInventory)
+        if (!activeInventory)
         {
             // 인벤토리 활성여부 : 상점이 켜지면 i키를 눌러도 인벤토리 창이 사라지지않고,
-            // 인벤토리 창이 켜지면 상점이 안켜지개 설정
+            // 인벤토리 창이 켜지면 상점이 안켜지게 설정
             isStoreActive = isOpen;
             shop.SetActive(isOpen);
             inventoryPanel.SetActive(isOpen);
             // 모든 슬롯의 샵모드를 매개변수에다가 초기화되게 만들어준다
             for (int i = 0; i < slots.Length; i++)
             {   // 전달인자를 참으로 전달하게 되면 모든 슬롯에 샵모드가 참이된다
-                // 반대로 close 버튼을 누르면 샵모드가 거짓이 된다.
+                // 반대로 close 버튼을 누르면 샵모드가 전부 거짓이 된다.
                 slots[i].isShopMode = isOpen;
             }
         }
-        
+
     }
-    //
+
+    // 상점창 끄는 메서드
     public void DeActiveShop()
     {
         ActiveShop(false);
-        // 
+        //  샵데이터와 연결을 끊어주고 상점의 슬롯을 전부 초기화 시킨다.
         shopData = null;
         for (int i = 0; i < shopSlots.Length; i++)
         {

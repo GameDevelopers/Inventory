@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-//
+
 //  Slot.cs에서 UppdateSlotUI,RemoveSlot,OnPointerUp(얘만 내용삭제) 메서드 3개 복사가져오기
 public class ShopSlot : MonoBehaviour, IPointerUpHandler
 {
@@ -13,10 +13,10 @@ public class ShopSlot : MonoBehaviour, IPointerUpHandler
     public Image itemIcon;
     // 아이템이 팔렸음을 표시
     public bool soldOut = false;
-    //
+    // 인벤토리 ui에 메서드를 호출
     InventoryUI inventoryUI;
 
-    //
+    //인벤토리 ui에 메서드를 호출 
     public void Init(InventoryUI Iui)
     {
         inventoryUI = Iui;
@@ -26,9 +26,12 @@ public class ShopSlot : MonoBehaviour, IPointerUpHandler
     public void UppdateSlotUI()
     {
         // itemIcon sprite를 아이템 이미지로 초기화하고 활성화 시켜준다.
+
+        Debug.Log("UppdateSlotUI");
+
         itemIcon.sprite = item.itemImage;
         itemIcon.gameObject.SetActive(true);
-        // 
+        // 아이템이 팔렸다면 어둡게 만들어주는 코드 
         if (soldOut)
         {
             itemIcon.color = new Color(0.5f, 0.5f, 0.5f);
@@ -39,7 +42,7 @@ public class ShopSlot : MonoBehaviour, IPointerUpHandler
     public void RemoveSlot()
     {
         item = null;
-        //
+        // 솔드아웃이 false로 초기화
         soldOut = false;
         itemIcon.gameObject.SetActive(false);
     }
@@ -49,16 +52,15 @@ public class ShopSlot : MonoBehaviour, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         if (item != null)
-        {
-            if(ItemDataBase.instance.money >= item.itemCost && !soldOut 
-                && Inventory.instance.items.Count < Inventory.instance.SlotCnt)
+        {                                                                    // 인벤이 꽉 차지 않았을 때만 아이템이 구매 가능하도록
+            if (ItemDataBase.instance.money >= item.itemCost && !soldOut && Inventory.instance.items.Count < Inventory.instance.SlotCnt)
             {
                 ItemDataBase.instance.money -= item.itemCost;
                 Inventory.instance.AddItem(item);
-                // 팔린 아이템을 
+                // 슬롯이 클릭되면 UI의 Buy메서드를 호출하고 soldOut을 참으로 변경 
                 soldOut = true;
                 inventoryUI.Buy(slotnum);
-                UppdateSlotUI();
+                UppdateSlotUI(); // 구매가 끝나면 업데이트 UI로 슬롯을 다시 그려준다.
             }
         }
     }

@@ -17,19 +17,14 @@ public class ShopData : MonoBehaviour
         stocks.Add(ItemDataBase.instance.itemDB[1]);
         stocks.Add(ItemDataBase.instance.itemDB[2]);
         stocks.Add(ItemDataBase.instance.itemDB[3]);
-        stocks.Add(ItemDataBase.instance.itemDB[4]);
-        // 해당아이템이 팔린 정보를 가지고 있을 것
+   
+        
+        // 해당아이템이 팔린 위치 정보를 가지고 있을 것
         soldOuts = new bool[stocks.Count];
         // 배열을 리스트의 크기만큼 초기화하고 반복문을 통해 배열을 전부 거짓으로 초기화
         for (int i = 0; i < soldOuts.Length; i++)
         {
             soldOuts[i] = false;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

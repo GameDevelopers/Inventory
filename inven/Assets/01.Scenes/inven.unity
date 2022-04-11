@@ -345,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &110518064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2320,7 +2320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &780778122
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2841,7 +2841,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00004861331}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 370}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &852906490
 MonoBehaviour:
@@ -2962,19 +2962,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 858021400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1114828227}
-        m_TargetAssemblyTypeName: InventoryUI, Assembly-CSharp
-        m_MethodName: AddSlot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &858021400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3133,10 +3121,10 @@ MonoBehaviour:
     itemCost: 2000
   fielditemPrefab: {fileID: 4039312350190943408, guid: c2da73675f4dcff4dbcd6597027c9527, type: 3}
   pos:
-  - {x: -1, y: 0, z: 0}
-  - {x: -1, y: 2, z: 0}
-  - {x: 2, y: 0, z: 0}
-  - {x: 2, y: 2, z: 0}
+  - {x: -2, y: 0, z: 0}
+  - {x: -2, y: 2, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 2, z: 0}
 --- !u!4 &1009946824
 Transform:
   m_ObjectHideFlags: 0
@@ -3269,7 +3257,7 @@ MonoBehaviour:
   slots: []
   slotHolder: {fileID: 1368728204}
   shopSlots: []
-  shopHolder: {fileID: 0}
+  shopHolder: {fileID: 852906489}
   shop: {fileID: 780778121}
   closeShop: {fileID: 858021399}
   isStoreActive: 0
@@ -3832,7 +3820,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00048348997}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 910}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1368728205
 MonoBehaviour:

@@ -217,7 +217,7 @@ MonoBehaviour:
     itemImage: {fileID: 0}
     efts: []
     itemCost: 0
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 1379757173001997294}
   soldOut: 0
 --- !u!114 &1714222630484729965
 MonoBehaviour:
