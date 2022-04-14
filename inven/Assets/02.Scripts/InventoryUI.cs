@@ -138,7 +138,7 @@ public class InventoryUI : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = -10;
         // 확인 DrawRay 씬 창에 레이를 그려줌
-        // Debug.DrawRay(mousePos, transform.forward, Color.red, 0.5f);
+        Debug.DrawRay(mousePos, transform.forward, Color.red, 0.5f);
 
         // 레이가 ui를 뚫고 가지 못하도록 만들어준다.
         // 모바일은 -1 대신 0
