@@ -39,8 +39,8 @@ Dark Rogue 소지품창
 
 <hr>  
 - 1주차 : 인벤토리 기능 + 아이템 기능 구현  
-![image](https://user-images.githubusercontent.com/86696753/163523050-c149fe4e-fa7e-4f2a-a36b-15c4972a095a.png)
-  
+![image](https://user-images.githubusercontent.com/86696753/163523312-2f161cea-62c5-4c97-9052-ea569dfa2e61.png)
+ 
 - 2주차 : 상점 기능(사고 팔기 + npc 지정) 구현  
 ![image](https://user-images.githubusercontent.com/86696753/163522698-c135f0c6-af17-42b5-a540-716d41a509d0.png)
   
