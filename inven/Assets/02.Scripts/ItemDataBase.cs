@@ -25,11 +25,11 @@ public class ItemDataBase : MonoBehaviour
     {
         // 돈 초기값 10000 입력
         money = 10000;
-        for (int i = 0; i < 4; i++)
-        {
-            GameObject go = Instantiate(fielditemPrefab, pos[i], Quaternion.identity);
-            go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, 3)]);
-        }    
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    GameObject go = Instantiate(fielditemPrefab, pos[i], Quaternion.identity);
+        //    go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, 3)]);
+        //}    
     }
 
 }
