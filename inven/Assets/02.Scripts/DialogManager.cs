@@ -18,6 +18,12 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
 
     public CanvasGroup dialoggroup;
 
+    public static DialogManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         sentences = new Queue<string>();    
@@ -71,6 +77,12 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
             nextText.SetActive(true);
             istyping = false;
         }
+
+         if (Input.GetKeyDown(KeyCode.Space))
+         {
+            if (!istyping)
+                NextSentence();
+         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -78,4 +90,6 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
         if(!istyping)
         NextSentence();
     }
+
+
 }

@@ -6529,9 +6529,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1751703114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaafc9f36a4dbaf449fb591ccfeb7206, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dd3a6a9b61369d4193594a0f197d2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sentences:
+  - "\uC5B4\uC11C\uC624\uAC8C\uB098."
+  - "\uC655\uAD6D\uC774 \uC790\uC2E0\uC758 \uC695\uB9DD\uC744 \uCDA9\uC871\uC2DC\uD0A4\uAE30\uB97C
+    \uBC14\uB77C\uBA70 \uB9CE\uC740 \uC774\uB4E4\uC774 \uC654\uC5C8\uC18C."
 --- !u!61 &1751703116
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6542,7 +6546,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

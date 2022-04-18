@@ -168,6 +168,7 @@ public class InventoryUI : MonoBehaviour
                             //Debug.Log(shopData.stocks[i]);
                         }
                     }
+                    
                 }
             }
         }
