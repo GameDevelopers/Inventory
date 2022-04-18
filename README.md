@@ -36,3 +36,15 @@ Dark Rogue 소지품창
 - 회복
 - 버프(UI만 먼저 넣고 기능관련해선 자료 찾은 후 결정)
 - 스토리상 필요한 기타템(열쇠, 펜 등) 모양 구현만 해서 넣어줄 예정, 기능에 관해선 미정 
+
+<hr>  
+- 1주차 : 인벤토리 기능 + 아이템 기능 구현  
+![image](https://user-images.githubusercontent.com/86696753/163523312-2f161cea-62c5-4c97-9052-ea569dfa2e61.png)
+ 
+- 2주차 : 상점 기능(사고 팔기 + npc 지정) 구현  
+![image](https://user-images.githubusercontent.com/86696753/163522698-c135f0c6-af17-42b5-a540-716d41a509d0.png)
+  
+- 3주차 : 상점맵에 맞게 UI구성 중  
+![image](https://user-images.githubusercontent.com/86696753/163521735-9206428d-a379-441a-91a2-693e76122ae8.png)
+  
+- 4주차 : 프로젝트 하나로 결합 작업 진행  
