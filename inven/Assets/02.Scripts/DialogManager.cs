@@ -14,7 +14,8 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
     private string currentSentence;
     public float typingSpeed = 0.1f;
 
-    private bool istyping;
+    public bool istyping = false;
+    public bool jump = false;
 
     public CanvasGroup dialoggroup;
 
@@ -56,6 +57,7 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
         {
             dialoggroup.alpha = 0;
             dialoggroup.blocksRaycasts = false;
+            jump = false;
         }
     }
 
@@ -65,8 +67,10 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
         foreach( char letter in line.ToCharArray())
         {
             dialogText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            if (jump) yield return null;
+            else yield return new WaitForSeconds(typingSpeed);
         }
+        istyping = false;
     }
 
     void Update()
@@ -78,11 +82,11 @@ public class DialogManager : MonoBehaviour, IPointerDownHandler
             istyping = false;
         }
 
-         if (Input.GetKeyDown(KeyCode.Space))
-         {
-            if (!istyping)
-                NextSentence();
-         }
+         //if (Input.GetKeyDown(KeyCode.Space))
+         //{
+         //   if (!istyping)
+         //       NextSentence();
+         //}
     }
 
     public void OnPointerDown(PointerEventData eventData)
