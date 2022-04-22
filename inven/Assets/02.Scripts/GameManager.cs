@@ -9,7 +9,15 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
+        }
+    }
+
+    public void HomeMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

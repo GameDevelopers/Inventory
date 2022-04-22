@@ -7,7 +7,6 @@ using UnityEngine;
 public class ItemHealingEft : ItemEffect
 {
     // 원하는 아이템 사용효과 구현
-
     public int healingPoint = 0;
     public override bool ExecuteRole()
     {

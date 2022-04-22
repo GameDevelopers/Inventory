@@ -13,7 +13,7 @@ public class ItemDataBase : MonoBehaviour
     {
         instance = this;
     }
-    public List<Item> itemDB = new List<Item>();
+    public List<InvenItem> itemDB = new List<InvenItem>();
 
     // 프리팹 복제 생성을 위한 변수
     public GameObject fielditemPrefab;

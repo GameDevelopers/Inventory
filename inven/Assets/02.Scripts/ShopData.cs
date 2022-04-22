@@ -6,17 +6,17 @@ using static UnityEditor.Progress;
 public class ShopData : MonoBehaviour
 {
     // 게임이 시작되면 리스트에 아이템이 추가됨
-    public List<Item> stocks = new List<Item>();
+    public List<InvenItem> stocks = new List<InvenItem>();
     // 아이템이 팔리면 리스트와 같은 위치를 참으로 만든다
     public bool[] soldOuts;
 
     void Start()
     {
-        // 테스트를 위한 아이템 추가
-        stocks.Add(ItemDataBase.instance.itemDB[0]);
-        stocks.Add(ItemDataBase.instance.itemDB[1]);
-        stocks.Add(ItemDataBase.instance.itemDB[2]);
-        stocks.Add(ItemDataBase.instance.itemDB[3]);
+        //// 테스트를 위한 아이템 추가
+        //stocks.Add(ItemDataBase.instance.itemDB[0]);
+        //stocks.Add(ItemDataBase.instance.itemDB[1]);
+        //stocks.Add(ItemDataBase.instance.itemDB[2]);
+        //stocks.Add(ItemDataBase.instance.itemDB[3]);
    
         
         // 해당아이템이 팔린 위치 정보를 가지고 있을 것

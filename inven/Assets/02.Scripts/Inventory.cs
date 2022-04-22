@@ -46,11 +46,11 @@ public class Inventory : MonoBehaviour
 
     // 플레이어 아이템 습득 시 인벤토리로 이동
     // 획득한 아이템을 담을 리스트 생성
-    public List<Item> items = new List<Item>();
+    public List<InvenItem> items = new List<InvenItem>();
 
     // 아이템을 리스트에 추가하는 메서드
     // items의 갯수가 현재 활성화된 슬롯 수보다 작을때만 아이템 추가
-    public bool AddItem(Item _item)
+    public bool AddItem(InvenItem _item)
     {
         if(items.Count < SlotCnt)
         {

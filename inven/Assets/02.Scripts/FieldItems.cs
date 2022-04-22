@@ -5,13 +5,13 @@ using UnityEngine;
 public class FieldItems : MonoBehaviour
 {
     // 어떤 아이템인지 명시
-    public Item item;
+    public InvenItem item;
     // 아이템별 이미지 변환
     public SpriteRenderer image;
 
     // 필드에 아이템을 생성할 때 SetItem 통해 전달받은 item데이터로
     // 현재 클래스의 item을 초기화
-    public void SetItem(Item _item)
+    public void SetItem(InvenItem _item)
     {
         // 아이템 이름, 이미지, 종류 
         item.itemName = _item.itemName;
@@ -29,7 +29,7 @@ public class FieldItems : MonoBehaviour
     }
 
     // 다른 클래스에서 item변수를 직접가져오지 않고 함수를 통해서 접근하기 위해 작성
-    public Item GetItem()
+    public InvenItem GetItem()
     {
         return item;
     }

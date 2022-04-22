@@ -15,25 +15,11 @@ public class NPCtalk : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-        
-            //if (Input.GetKeyDown(KeyCode.Space)&& gameObject.CompareTag("Player"))
-            //{
-            //    if(DialogManager.instance.dialoggroup.alpha == 0)
-            //    {
-            //        DialogManager.instance.Ondialog(sentences);
-            //    }
-            //}
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            InvenPlayerController playerController = collision.gameObject.GetComponent<InvenPlayerController>();
             playerController.talk = true;
             playerController.sentences = this.sentences;
         }
@@ -41,6 +27,6 @@ public class NPCtalk : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player") collision.gameObject.GetComponent<PlayerController>().talk = false;
+        if (collision.tag == "Player") collision.gameObject.GetComponent<InvenPlayerController>().talk = false;
     }
 }

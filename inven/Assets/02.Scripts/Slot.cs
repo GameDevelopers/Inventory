@@ -10,7 +10,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public int slotnum;
 
     // 아이템 , 이미지 변수 생성
-    public Item item;
+    public InvenItem item;
     public Image itemIcon;
 
     // 참이면 판매모드, 거짓이면 아이템 사용모드
@@ -61,7 +61,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     // 판매할 아이템
     public void SellItem()
-    {   // isSell 이 참이면 아이템DB의 머니 변수애 아이템의 비용만큼 증가시킨다
+    {   // isSell 이 참이면 아이템DB의 머니 변수에 아이템의 비용만큼 증가시킨다
         if (isSell)
         {
             ItemDataBase.instance.money += item.itemCost; // 아이템 스크립트에 변수 작성
