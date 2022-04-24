@@ -34,12 +34,19 @@ Dark Rogue 소지품창
 - 버프(UI만 먼저 넣고 기능관련해선 자료 찾은 후 결정)
 - 스토리상 필요한 기타템(열쇠, 펜 등) 모양 구현만 해서 넣어줄 예정, 기능에 관해선 미정 
 
+<hr>
+NPC 대화 기능
+- 마우스 클릭 혹은 스페이스바 누를 시 대화 전개
+- 콜라이더태그 인식으로 알파값 조절해서 활성화
+- 코루틴 사용해서 대화 속도 조절 
+
 <hr>  
 - 1주차 : 인벤토리 기능 + 아이템 기능 구현  
 ![image](https://user-images.githubusercontent.com/86696753/163523312-2f161cea-62c5-4c97-9052-ea569dfa2e61.png)
  
 - 2주차 : 상점 기능(사고 팔기 + npc 지정) 구현  + NPC 대화기능 추가
-![image](https://user-images.githubusercontent.com/86696753/163522698-c135f0c6-af17-42b5-a540-716d41a509d0.png)
+![image](https://user-images.githubusercontent.com/86696753/163522698-c135f0c6-af17-42b5-a540-716d41a509d0.png)  
+![image](https://user-images.githubusercontent.com/86696753/164958070-f4edcb38-22c2-429d-b492-d0bf6da4e690.png)
 
   
 - 3주차 : 상점맵에 맞게 UI구성 중  
